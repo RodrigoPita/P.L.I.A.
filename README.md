@@ -1,2 +1,6 @@
 # P.L.I.A.
-UFRJ_BCC_2022.1
+Disciplina de Programação em Lógica e Inteligência Artificial
+
+Professor: Daniel Schneider
+
+Site: https://swish.swi-prolog.org
