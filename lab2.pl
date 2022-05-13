@@ -16,5 +16,8 @@ par([]).
 par([_|T]):- impar(T).
 impar([_|T]):- par(T).
 
-lshift(L1, L2)
+conc([], L, L).
+conc([X|T1], L2, [X|T3]):- conc(T1, L2, T3).
+lshift([X|Y], T):- conc(Y, [X], T).
+
 rshift(L1, L2)
