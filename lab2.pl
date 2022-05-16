@@ -21,3 +21,6 @@ conc([X|T1], L2, [X|T3]):- conc(T1, L2, T3).
 lshift([X|Y], T):- conc(Y, [X], T).
 
 rshift(L1, L2):- lshift(L2, L1).
+
+reverse([], []).
+reverse([X|T], L2):- reverse(T, L3), conc(L3, [X], L2).
