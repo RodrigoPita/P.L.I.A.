@@ -30,3 +30,6 @@ palindromo(L):- inverte(L, L).
 
 ultimo(X, [X]).
 ultimo(X, [_|T]):- ultimo(X, T).
+
+prodescalar([X], [Y], X*Y).
+prodescalar([X|T1], [Y|T2], P):- prodescalar(T1, T2, P1), P is (X * Y) + P1. 
