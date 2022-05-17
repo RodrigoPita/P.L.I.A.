@@ -33,3 +33,11 @@ ultimo(X, [_|T]):- ultimo(X, T).
 
 prodescalar([X], [Y], X*Y).
 prodescalar([X|T1], [Y|T2], P):- prodescalar(T1, T2, P1), P is (X * Y) + P1. 
+
+nvogais([a], 1).
+nvogais([e], 1).
+nvogais([i], 1).
+nvogais([o], 1).
+nvogais([u], 1).
+nvogais([X], 0).
+nvogais([X|T], N):- nvogais([X], N1), nvogais(T, N2), N is N1 + N2.
