@@ -42,7 +42,7 @@ nvogais([u], 1).
 nvogais([X], 0).
 nvogais([X|T], N):- nvogais([X], N1), nvogais(T, N2), N is N1 + N2.
 
-split([X], [X], []):- X < 0.
+split([X], [X], []):- X >= 0.
 split([X], [], [X]).
 split([X|T], P, N):- split([X], P1, N1), split(T, P2, N2), conc(P1, P2, P), conc(N1, N2, N).
 
