@@ -29,7 +29,7 @@ rshift( L1, L2 ):- lshift( L2, L1 ).
 
 % Q11.
 tamanho( [], 0 ).
-tamanho( [_|Y], N ):- tamanho(Y, N1), N is N1 + 1.
+tamanho( [_|Y], N ):- tamanho( Y, N1 ), N is N1 + 1.
 
 % Q12.
 nvogais( [a], 1 ).
@@ -53,3 +53,10 @@ removedup( L, L ).
 replace( X, Y, [X], [Y] ).
 replace( _, _, [Z], [Z] ).
 replace( X, Y, [A|T], L ):- replace( X, Y, [A], L1 ), replace( X, Y, T, L2 ), conc( L1, L2, L ).
+
+% Q16.
+membro( X, L ):- conc( _, [X|_], L ).
+
+% Q17.
+insere2( X, L, L ):- membro( X, L ), !.
+insere2( X, L, [X|L] ).
