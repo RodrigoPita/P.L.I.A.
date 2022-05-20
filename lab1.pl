@@ -1,24 +1,25 @@
+% 1.
 pai(abraao, ismael).
 pai(abraao, isaac).
 pai(isaac, esau).
 pai(isaac, jaco).
 
-%Responda as perguntas abaixo
-%a) Quais sao os filhos de Abraao? pai(abraao, X).
+% Responda as perguntas abaixo
+% a) Quais sao os filhos de Abraao? pai(abraao, X).
 
-%b) Abraao tem filhos? pai(abraao, _).
+% b) Abraao tem filhos? pai(abraao, _).
 
-%c) Quem eh o pai de Esau? pai(X, esau).
+% c) Quem eh o pai de Esau? pai(X, esau).
 
-%d) Abraao eh avo? pai(abraao, X), pai(X, Y).
+% d) Abraao eh avo? pai(abraao, X), pai(X, Y).
 
-%e) avo(X, Y), se X for avo de Y
+% e) avo(X, Y), se X for avo de Y
 avo(X, Y):- pai(X, Z), pai(Z, Y).
 
-%f) irmaos(X, Y) se X e Y forem irmaos
+% f) irmaos(X, Y) se X e Y forem irmaos
 irmaos(X, Y):- pai(Z, X), pai(Z, Y), X \= Y.
 
-%g) descendente(X, Y) se Y for descendente de X
+% g) descendente(X, Y) se Y for descendente de X
 pai(pai, filho1).
 pai(filho1, filho2).
 pai(filho2, filho3).
@@ -30,6 +31,7 @@ pai(filho6, filho7).
 descendente(X, Y):- pai(X, Y).
 descendente(X, Y):- pai(X, F), descendente(F, Y).
 
+% 8.
 %min(X, Y, M)
 %min(X, Y, X):- X =< Y, !.
 %min(X, Y, Y).

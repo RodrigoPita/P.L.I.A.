@@ -60,3 +60,23 @@ membro( X, L ):- conc( _, [X|_], L ).
 % Q17.
 insere2( X, L, L ):- membro( X, L ), !.
 insere2( X, L, [X|L] ).
+
+% Q18.
+insere3( X, L, R ).
+
+% Q19.
+permutacao( L, P ).
+
+% Q20.
+sublista( S, L ).
+
+% Q21.
+del( X, [X], [] ).
+del( X, [Y], [Y] ):- X \= Y.
+del( X, [A|T], L ):- del( X, [A], L1 ), del( X, T, L2 ), conc( L1, L2, L ).
+
+% Q22.
+intersect( L1, L2, L3 ).
+
+% Q23.
+vizinhos( X, Y, L ).
