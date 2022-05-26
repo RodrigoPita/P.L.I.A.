@@ -76,7 +76,7 @@ permutacao( [], [] ).
 permutacao( [X|T], P ):- permutacao( T, P1 ), insere3( X, P1, P ).
 
 % Q20.
-sublista( S, L ).
+sublista( S, L ):- conc( L1, _, L ), conc( _, S, L1 ).
 
 % Q21.
 % del( X, [X], [] ).
