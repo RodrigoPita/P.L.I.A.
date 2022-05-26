@@ -65,10 +65,15 @@ insere2( X, L, L ):- membro( X, L ), !.
 insere2( X, L, [X|L] ).
 
 % Q18.
-insere3( X, L, R ).
+del( X, [X|T], T ).
+del( X, [Y|T1], [Y|T2] ):- del( X, T1, T2 ).
+
+insere3( X, L, R ):- del( X, R, L ).
+
 
 % Q19.
-permutacao( L, P ).
+permutacao( [], [] ).
+permutacao( [X|T], P ):- permutacao( T, P1 ), insere3( X, P1, P ).
 
 % Q20.
 sublista( S, L ).
