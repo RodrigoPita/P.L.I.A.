@@ -79,12 +79,17 @@ permutacao( [X|T], P ):- permutacao( T, P1 ), insere3( X, P1, P ).
 sublista( S, L ).
 
 % Q21.
-del( X, [X], [] ).
-del( X, [Y], [Y] ):- X \= Y.
-del( X, [A|T], L ):- del( X, [A], L1 ), del( X, T, L2 ), conc( L1, L2, L ).
+% del( X, [X], [] ).
+% del( X, [Y], [Y] ):- X \= Y.
+% del( X, [A|T], L ):- del( X, [A], L1 ), del( X, T, L2 ), conc( L1, L2, L ).
+del2( _, [], [] ).
+del2( X, [X|T], R ):- del2( X, T, R ).
+del2( X, [Y|T1], [Y|T2] ):- X \= Y, del2( X, T1, T2 ).
 
 % Q22.
 intersect( L1, L2, L3 ).
 
 % Q23.
-vizinhos( X, Y, L ).
+vizinhos( A, B, [A, B|_] ).
+vizinhos( A, B, [B, A|_] ).
+vizinhos( A, B, [_|T] ):- vizinhos( A, B, T ).
