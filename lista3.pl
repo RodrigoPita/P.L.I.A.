@@ -1,3 +1,18 @@
+% Q1. 
+conc( [], L, L ).
+conc( [X|T1], L2, [X|T3] ):- conc( T1, L2, T3 ).
+
+membro( X, L ):- conc( _, [X|_], L ).
+
+s( a, b )
+s( a, c )
+s( b, a )
+s( b, c )
+s( c, a )
+s( c, b )
+
+membro(X, [a,b,c]), membro(Y, [a,b,c]), X \= Y, assert( s(X,Y) ).
+
 % Q4.
 cubo:- write( 'Digite o numero inteiro ou stop: '), read( X ), avalia( X ).
 avalia( stop ):- !.
@@ -61,5 +76,68 @@ retract( trabalha( _, _ ) ), fail.
 % removeDWH( IdP ):- retract( trabalha( _, IdP ) ), removeDWH.
 retract( projeto( IdP, 'DataWareHouse' ) ), retract( trabalha( _, IdP ) ), fail.
 
+% Q6.a)
+soma( A, B, R ):- R is A + B.
+
+% Q6.b)
+subtracao( A, B, R ):- R is A - B.
+multiplicacao( A, B, R ):- R is A * B.
+divisao( A, B, R ):- R is A / B.
+
+% Q6.c
+calcula( A, B, soma, Res ):- soma( A, B, Res ).
+calcula( A, B, subtracao, Res ):- subtracao( A, B, Res ).
+calcula( A, B, multiplicacao, Res ):- multiplicacao( A, B, Res ).
+calcula( A, B, divisao, Res ):- divisao( A, B, Res ).
+
+% Q8.
+fail.
+
+% Q9.a)
+?- X = bola, not( integer( X ) ), atom( X ).
+X = bola
+
+% Q9.b)
+?- var(X), X=2, integer( X ), atom( X ).
+false
+
+% Q9.c)
+?- T=..[paridade,dolar,real,3.62], arg(3,T,V).
+T = paridade( dolar, real, 3.62 )
+V = 3.63
+
+% Q9.d) 
+?- G=..[ adversarios| [fla,flu] ], arg(N, G, T).
+G = adversarios( fla, flu )
+N = 1, T = fla;
+N = 2, T = flu;
+
+% Q.e)
+?- functor(T,s,3), arg(1,T,3), arg(3,T,1) , arg(2,T,2).
+T = s( 3, 2, 1 ).
+
+% Q.f) 
+?- var(X), membro(X,[3,b,7]), nonvar(X) , atom(X).
+X = b
+
 %  Q11.
-media( A, B , M ):- M is ( A + B )/2.
+media( A, B, M ) :- nonvar( A ), nonvar( B ), M is ( A + B )/2.
+media( A, B, M ) :- nonvar( A ), nonvar( M ), B is 2*M-A.
+media( A, B, M ) :- nonvar( B ), nonvar( M ), A is 2*M-B.
+
+% Q14.
+subset( T, T ).
+subset( T, L ):- del( _, L, L1 ), subset( T, L1 ).
+subset2( L1, L2, L ):- setof( L1, subset( L1, L2 ), L ).
+
+% Q15.
+imprime( _, 0 ):- !.
+imprime( X, N ):- N1 is N - 1, imprime( X, N1 ), write( X ).
+
+linhaExterna( A, 1 ):- imprime( '*', A ), !.
+linhaExterna( A, N ):- imprime( '*', A ), nl, N1 is N - 1, linhaInterna( A, N1 ).
+
+linhaInterna( A, 1 ):- linhaExterna( A, 1 ), !.
+linhaInterna( A, N ):- imprime( '*', 1 ), B is A - 2, tab( B ), imprime( '*', 1 ), nl, N1 is N - 1, linhaInterna( A, N1 ).
+
+retang( N ):- linhaExterna( N, N ).

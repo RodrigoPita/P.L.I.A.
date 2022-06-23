@@ -4,3 +4,10 @@ contaInteiros( [_|T], N ):- contaInteiros( T, N ).
 
 not2(G):- G, !, fail.
 not2(_).
+
+troca( [X], [X] ).
+troca( [X, Y|T1], [X|T2] ):- X =< Y, troca( [Y|T1], T2 ).
+troca( [X, Y|T1], [Y|T2] ):- X > Y, troca( [X|T1], T2 ).
+
+bsort( L, L ):- troca( L, L ).
+bsort( L1, L2 ):- troca( L1, L3 ), bsort( L3, L2 ), !.
