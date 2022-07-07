@@ -18,3 +18,13 @@ insere( X, [Y|T], [Y|T] ):- X > Y, insere( X, T1, T2 ).
 
 isort( [], [] ).
 isort( [X|T], S ):- isort( T, T1 ), insere( X, T1, S ).
+
+conc( [], L, L ).
+conc( [X|T1], L2, [X|T3] ):- conc( T1, L2, T3 ).
+
+split( _, [], [], [] ).
+split( X, [Y|T], [Y|Te], Dir ):- Y =< X, !, split( X, T, Te, Dir ).
+split( X, [Y|T], Esq, [Y|Td]):- split( X, T, Esq, Td ).
+
+qsort( [], [] ).
+qsort( [X|T], Ord ) :- split( X, T, Esq, Dir ), qsort( Esq, EsqOrd ), qsort( Dir, DirOrd ), conc( EsqOrd, [X|DirOrd], Ord ).
