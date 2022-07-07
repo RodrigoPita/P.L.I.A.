@@ -15,3 +15,16 @@ linha( _, -1 ).
 linha( B, A ):- tab( B ), imprime( '*', A ), nl, B1 is B + 1, A1 is A - 2, linha( B1, A1 ).
 
 triang( N ):- A is 2 * N - 1, linha( 0, A ).
+
+membro( X, L ):- conc( _, [X|_], L ).
+
+toca(david, trompete, jazz).
+toca(michael, trompete, jazz).
+toca(michael, trompete, classico).
+toca(janeth, piano, jazz).
+toca(janeth, piano, classico).
+toca(sofia, piano, classico).
+
+musicos( L ):- findall( X, toca( X, _, _ ), L1 ), setof( Y, membro( Y, L1 ), L ).
+
+jazz( L ):- findall( X, toca( X, _, jazz ), L1 ), setof( Y, membro( Y, L1 ), L ).
