@@ -25,3 +25,21 @@ dicbin( t( Esq, X, Dir ) ):- X \= nil, Esq = t( _, Y, _ ), Y < X, dicbin( Esq ),
 altura( nil, 0 ).
 altura( t( Esq, _, Dir ), N ):- altura( Esq, N1 ), altura( Dir, N2 ), N is 1 + max( N1, N2 ).
 
+% Grafos
+link( a, b ).
+link( a, c ).
+link( b, d ).
+link( c, d ).
+link( c, f ).
+link( d, e ).
+link( d, f ).
+link( f, a ).
+
+% Busca em Profundidade
+path( X, X, [X] ).
+path( X, Z, [X|P] ):- link( X, Prox ), path( Prox, Z, P ).
+
+% Truque para quebrar o loop da profundidade
+% lista( P ), path( a, X, P )
+lista( [] ).
+lista( [_|T] ):- lista( T ).
