@@ -4,7 +4,8 @@
 % L = [ 3, 4, 5, 6, 7, 8 ]
 
 range( X, X, [X] ):- !.
-range( X, Y, [X|T] ):- X1 is X + 1, range( X1, Y, T ).
+range( X, Y, [X|T] ):- X < Y, !, X1 is X + 1, range( X1, Y, T ).
+range( X, Y, [X|T] ):- X1 is X - 1, range( X1, Y, T ).
 
 % 2) Crie um predicado dup( L1, N, L2 ) que duplica N vezes cada elemento da lista L1, produzindo a lista L2
 % Exemplo:
