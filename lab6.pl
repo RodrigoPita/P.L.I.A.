@@ -37,3 +37,20 @@ primo( N ):- not( composto( N ) ).
 compress( [X], [X] ).
 compress( [X, X|T], L ):- compress( [X|T], L ), !.
 compress( [X, Y|T], [X|L] ):- X \= Y, compress( [Y|T], L ).
+
+% 5) Crie um predicado pack( L1, L2 ), para empacotar os elementos consecutivos da lista L1 em listas separadas na lista L2
+% Exemplo:
+% ?_ pack( [ a, a, a, b, b, c, c, c ], L ).
+% L = [ [ a, a, a ], [ b, b ], [ c, c, c ] ]
+
+ultimo( [X], X ).
+ultimo( [_|T], U ) :- ultimo( T,U ).
+
+pack( L1, Final ):- conc( Ini, Resto, L1 ), compress( Ini, [_] ), ultimo( Ini, U ), Resto = [X|_], U \= X, !, pack( Resto, Resto2 ), Final = [Ini|Resto2].
+pack( L, [L] ):- !.
+
+% Crie um predicado removePos( L1, N, R, L2 ) que remove o N-esimo elemento R da lista L1 produzindo a lista L2
+% Exemplo:
+% ?_ removePos( [ a, b, c, d ], 3, X, L ).
+% X = c
+% L = [ a, b, d ]
