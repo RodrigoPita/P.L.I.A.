@@ -28,3 +28,12 @@ dup( [X|T], N, L ):- multi( X, N, Lx ), dup( T, N, L1 ), conc( Lx, L1, L ).
 
 composto( N ):- N1 is ceil( sqrt( N ) ), range( 2, N1, L ), member( X, L ), 0 is N mod X.
 primo( N ):- not( composto( N ) ).
+
+% 4) Crie um predicado compress( L1, L2 ) para eliminar duplicatas consecutivas de elementos de uma lista L1, produzindo uma lista L2
+% Exemplo:
+% ?_ compress( [ a, a, a, a, b, c, c, c, d, d ], L ).
+% L = [ a, b, c, d ]
+
+compress( [X], [X] ).
+compress( [X, X|T], L ):- compress( [X|T], L ), !.
+compress( [X, Y|T], [X|L] ):- X \= Y, compress( [Y|T], L ).
