@@ -10,3 +10,12 @@ range( X, Y, [X|T] ):- X1 is X + 1, range( X1, Y, T ).
 % Exemplo:
 % ?_ dup( [ a, c, d ], 3, L ).
 % L = [ a, a, a, c, c, c, d, d, d ]
+
+conc( [], L, L ).
+conc( [X|T1], L2, [X|T3] ):- conc( T1, L2, T3 ).
+
+multi( _, 0, [] ):- !.
+multi( X, N, [X|T] ):- N1 is N - 1, multi( X, N1, T ).
+
+dup([], _, [] ):- !.
+dup( [X|T], N, L ):- multi( X, N, Lx ), dup( T, N, L1 ), conc( Lx, L1, L ).
