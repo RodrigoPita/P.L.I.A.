@@ -20,6 +20,9 @@ slice_start( [_|T], I, L2 ):- I1 is I - 1, slice_start( T, I1, L2 ).
 slice( L1, I, K, L2 ):- slice_end( L1, K, L3 ), slice_start( L3, I, L2 ).
 
 % Q4.
+conc( [], L, L ).
+conc( [X|T1], L2, [X|T3] ):- conc( T1, L2, T3 ).
+
 compress( [X], [X] ).
 compress( [X, X|T], L ):- compress( [X|T], L ), !.
 compress( [X, Y|T], [X|L] ):- X \= Y, compress( [Y|T], L ).
