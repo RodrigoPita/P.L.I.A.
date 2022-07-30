@@ -10,3 +10,11 @@ iRenda( _, 0 ).
 % Q2.b)
 salario( B, L ):- iRenda( B, I ), L is B - I.
 
+% Q3.
+slice_end( _, 0, [] ):- !.
+slice_end( [X|T], I, L2 ):- I1 is I - 1, slice_end( T, I1, L3 ), conc( [X], L3, L2 ).
+
+slice_start( L, 1, L ):- !.
+slice_start( [_|T], I, L2 ):- I1 is I - 1, slice_start( T, I1, L2 ).
+
+slice( L1, I, K, L2 ):- slice_end( L1, K, L3 ), slice_start( L3, I, L2 ).
