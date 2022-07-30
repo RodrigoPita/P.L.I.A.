@@ -18,3 +18,22 @@ slice_start( L, 1, L ):- !.
 slice_start( [_|T], I, L2 ):- I1 is I - 1, slice_start( T, I1, L2 ).
 
 slice( L1, I, K, L2 ):- slice_end( L1, K, L3 ), slice_start( L3, I, L2 ).
+
+% Q4.
+compress( [X], [X] ).
+compress( [X, X|T], L ):- compress( [X|T], L ), !.
+compress( [X, Y|T], [X|L] ):- X \= Y, compress( [Y|T], L ).
+
+ultimo( [X], X ).
+ultimo( [_|T], U ) :- ultimo( T,U ).
+
+pack( L1, Final ):- conc( Ini, Resto, L1 ), compress( Ini, [_] ), ultimo( Ini, U ), Resto = [X|_], U \= X, !, pack( Resto, Resto2 ), Final = [Ini|Resto2].
+pack( L, [L] ):- !.
+
+tamanho( [], 0 ).
+tamanho( [_|Y], N ):- tamanho( Y, N1 ), N is N1 + 1.
+
+lista_freqs( [], [] ):- !.
+lista_freqs( [X|T], L ):- tamanho( X, N ), X = [Y|_], lista_freqs( T, L1 ), conc( [[N, Y]], L1, L ).
+
+codifica( L1, L2 ):- pack( L1, L3 ), lista_freqs( L3, L2 ).
